@@ -1,6 +1,12 @@
 import axios from "axios";
 
+const headers = {
+  'Content-Type': 'application/json',
+  Authorization: ''
+};
+
 export const CUSTOMERS_URL = "api/customers";
+export const API = `${process.env.REACT_APP_API_URL}/account_plan/find_all`;
 
 // CREATE =>  POST: add a new customer to the server
 export function createCustomer(customer) {
@@ -19,7 +25,13 @@ export function getCustomerById(customerId) {
 // Method from server should return QueryResultsModel(items: any[], totalsCount: number)
 // items => filtered/sorted result
 export function findCustomers(queryParams) {
-  return axios.post(`${CUSTOMERS_URL}/find`, { queryParams });
+  //return axios.post(`${CUSTOMERS_URL}/find`, { queryParams });
+  return axios({
+      method: 'post',
+      url: API,
+      data: queryParams,
+      headers: headers
+  });
 }
 
 // UPDATE => PUT: update the customer on the server

@@ -28,7 +28,7 @@ import { MetronicI18nProvider } from "./_metronic/i18n";
 
 const { PUBLIC_URL } = process.env;
 
-_redux.setupAxios(axios, store);
+//_redux.setupAxios(axios, store);
 
 ReactDOM.render(
   <MetronicI18nProvider>
