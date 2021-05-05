@@ -10,7 +10,63 @@ import { toAbsoluteUrl } from "../../../../_helpers";
 import { DropdownTopbarItemToggler } from "../../../../_partials/dropdowns";
 
 export function UserProfileDropdown() {
-  const { user } = useSelector((state) => state.auth);
+  /*Remove if auth is activate with URL.*/
+  const { user } = useSelector((state) => state.auth = {
+    user: {
+      id: 2,
+      username: "user",
+      password: "demo",
+      email: "user@demo.com",
+      authToken: "auth-token-6829bba69dd3421d8762-991e9e806dbf",
+      refreshToken: "auth-token-f8e4c61a318e4d618b6c199ef96b9e55",
+      roles: [2], // Manager
+      fullname: "Megan F",
+      firstname: "Megan",
+      lastname: "Fox",
+      occupation: "Deputy Head of Keenthemes in New York office",
+      companyName: "Keenthemes",
+      phone: "456669067891",
+      language: "en",
+      timeZone: "International Date Line West",
+      communication: {
+        email: true,
+        sms: true,
+        phone: false,
+      },
+      emailSettings: {
+        emailNotification: true,
+        sendCopyToPersonalEmail: false,
+        activityRelatesEmail: {
+          youHaveNewNotifications: false,
+          youAreSentADirectMessage: false,
+          someoneAddsYouAsAsAConnection: true,
+          uponNewOrder: false,
+          newMembershipApproval: false,
+          memberRegistration: true,
+        },
+        updatesFromKeenthemes: {
+          newsAboutKeenthemesProductsAndFeatureUpdates: false,
+          tipsOnGettingMoreOutOfKeen: false,
+          thingsYouMissedSindeYouLastLoggedIntoKeen: true,
+          newsAboutMetronicOnPartnerProductsAndOtherServices: true,
+          tipsOnMetronicBusinessProducts: true,
+        },
+      },
+      address: {
+        addressLine: "3487  Ingram Road",
+        city: "Greensboro",
+        state: "North Carolina",
+        postCode: "27409",
+      },
+      socialNetworks: {
+        linkedIn: "https://linkedin.com/user",
+        facebook: "https://facebook.com/user",
+        twitter: "https://twitter.com/user",
+        instagram: "https://instagram.com/user",
+      },
+    }
+  });
+  //const { user } = useSelector((state) => state.auth);
   const uiService = useHtmlClassService();
   const layoutProps = useMemo(() => {
     return {
