@@ -6,7 +6,8 @@ const headers = {
 };
 
 export const CUSTOMERS_URL = "api/customers";
-export const API = `${process.env.REACT_APP_API_URL}/account_plan/find_all`;
+export const FIND_ALL = `${process.env.REACT_APP_API_URL}/account_plan/find_all`;
+export const GET_ID = `${process.env.REACT_APP_API_URL}/account_plan/read`;
 
 // CREATE =>  POST: add a new customer to the server
 export function createCustomer(customer) {
@@ -19,7 +20,12 @@ export function getAllCustomers() {
 }
 
 export function getCustomerById(customerId) {
-  return axios.get(`${CUSTOMERS_URL}/${customerId}`);
+  //return axios.get(`${CUSTOMERS_URL}/${customerId}`);
+  return axios({
+    method: 'get',
+    url: `${GET_ID}/${customerId}`,
+    headers: headers
+});
 }
 
 // Method from server should return QueryResultsModel(items: any[], totalsCount: number)
@@ -28,7 +34,7 @@ export function findCustomers(queryParams) {
   //return axios.post(`${CUSTOMERS_URL}/find`, { queryParams });
   return axios({
       method: 'post',
-      url: API,
+      url: FIND_ALL,
       data: queryParams,
       headers: headers
   });
