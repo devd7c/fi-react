@@ -15,7 +15,7 @@ export const initialFilter = {
     VINCode: ""
   },
   sortOrder: "asc", // asc||desc
-  sortField: "VINCode",
+  sortField: "id",
   pageNumber: 1,
   pageSize: 10
 };

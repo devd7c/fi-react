@@ -52,30 +52,37 @@ export function ProductsTable() {
   // Table columns
   const columns = [
     {
-      dataField: "VINCode",
-      text: "VIN Code (ID)",
+      dataField: "id",
+      text: "ID",
       sort: true,
       sortCaret: sortCaret,
     },
     {
-      dataField: "manufacture",
-      text: "Manufacture",
+      dataField: "voucherNumber",
+      text: "Codigo",
       sort: true,
       sortCaret: sortCaret,
     },
     {
-      dataField: "model",
-      text: "Model",
+      dataField: "voucherType.name",
+      text: "Tipo Comprobante",
       sort: true,
       sortCaret: sortCaret,
     },
     {
-      dataField: "modelYear",
-      text: "Model Year",
+      dataField: "description",
+      text: "Descripcion",
       sort: true,
       sortCaret: sortCaret,
     },
     {
+      dataField: "voucherDate",
+      text: "Fecha",
+      sort: true,
+      sortCaret: sortCaret,
+      formatter: columnFormatters.DateColumnFormatter,
+    },
+    /*{
       dataField: "color",
       text: "Color",
       sort: true,
@@ -102,7 +109,7 @@ export function ProductsTable() {
       sort: true,
       sortCaret: sortCaret,
       formatter: columnFormatters.ConditionColumnFormatter,
-    },
+    },*/
     {
       dataField: "action",
       text: "Actions",

@@ -1,6 +1,13 @@
 import axios from "axios";
 
+const headers = {
+  'Content-Type': 'application/json',
+  Authorization: ''
+};
+
 export const PRODUCTS_URL = "api/products";
+export const FIND_ALL = `${process.env.REACT_APP_API_URL}/voucher/find_all`;
+export const GET_ID = `${process.env.REACT_APP_API_URL}/voucher/read`;
 
 // CREATE =>  POST: add a new product to the server
 export function createProduct(product) {
@@ -13,13 +20,24 @@ export function getAllProducts() {
 }
 
 export function getProductById(productId) {
-  return axios.get(`${PRODUCTS_URL}/${productId}`);
+  //return axios.get(`${PRODUCTS_URL}/${productId}`);
+  return axios({
+    method: 'get',
+    url: `${GET_ID}/${productId}`,
+    headers: headers
+  });
 }
 
 // Method from server should return QueryResultsModel(items: any[], totalsCount: number)
 // items => filtered/sorted result
 export function findProducts(queryParams) {
-  return axios.post(`${PRODUCTS_URL}/find`, { queryParams });
+  //return axios.post(`${PRODUCTS_URL}/find`, { queryParams });
+  return axios({
+    method: 'post',
+    url: FIND_ALL,
+    data: queryParams,
+    headers: headers
+  });
 }
 
 // UPDATE => PUT: update the procuct on the server

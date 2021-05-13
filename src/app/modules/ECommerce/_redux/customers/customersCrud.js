@@ -25,7 +25,7 @@ export function getCustomerById(customerId) {
     method: 'get',
     url: `${GET_ID}/${customerId}`,
     headers: headers
-});
+  });
 }
 
 // Method from server should return QueryResultsModel(items: any[], totalsCount: number)
