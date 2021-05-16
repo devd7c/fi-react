@@ -8,14 +8,14 @@ import * as Yup from "yup";
 import { Input, Select } from "../../../../../../_metronic/_partials/controls";
 import {
   AVAILABLE_COLORS,
-  AVAILABLE_MANUFACTURES,
+  SPECIFICATIONS_DICTIONARY,
   ProductStatusTitles,
   ProductConditionTitles,
 } from "../ProductsUIHelpers";
 
 // Validation schema
 const ProductEditSchema = Yup.object().shape({
-  model: Yup.string()
+  voucherNumber: Yup.string()
     .min(2, "Minimum 2 symbols")
     .max(50, "Maximum 50 symbols")
     .required("Model is required"),
@@ -41,6 +41,7 @@ const ProductEditSchema = Yup.object().shape({
 
 export function ProductEditForm({
   product,
+  lsVoucherType,
   btnRef,
   saveProduct,
 }) {
@@ -60,30 +61,38 @@ export function ProductEditForm({
               <div className="form-group row">
                 <div className="col-lg-4">
                   <Field
-                    name="model"
+                    name="voucherNumber"
                     component={Input}
-                    placeholder="Model"
-                    label="Model"
+                    placeholder="Codigo Comprobante"
+                    label="Codigo"
                   />
-                </div>
-                <div className="col-lg-4">
-                  <Select name="manufacture" label="Manufacture">
-                    {AVAILABLE_MANUFACTURES.map((manufacture) => (
-                      <option key={manufacture} value={manufacture}>
-                        {manufacture}
-                      </option>
-                    ))}
-                  </Select>
                 </div>
                 <div className="col-lg-4">
                   <Field
                     type="number"
-                    name="modelYear"
+                    name="voucherDate"
                     component={Input}
-                    placeholder="Model year"
-                    label="Model year"
+                    placeholder="Fecha Comprobante"
+                    label="Fecha"
                   />
                 </div>
+                <div className="col-lg-4">
+                  <Select name="voucherType.id" label="Manufacture">
+                      {lsVoucherType.map((type) => (
+                        <option key={type.id} value={type.id}>
+                          {type.name}
+                        </option>
+                      ))}
+                  </Select>
+                </div>
+              </div>
+              <div className="form-group">
+                <label>Descripción o Razón Social</label>
+                <Field
+                  name="description"
+                  as="textarea"
+                  className="form-control"
+                />
               </div>
               <div className="form-group row">
                 <div className="col-lg-4">
@@ -142,14 +151,6 @@ export function ProductEditForm({
                     ))}
                   </Select>
                 </div>
-              </div>
-              <div className="form-group">
-                <label>Description</label>
-                <Field
-                  name="description"
-                  as="textarea"
-                  className="form-control"
-                />
               </div>
               <button
                 type="submit"

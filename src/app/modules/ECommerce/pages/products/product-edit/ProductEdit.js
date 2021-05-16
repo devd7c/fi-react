@@ -45,28 +45,43 @@ export function ProductEdit({
   const [title, setTitle] = useState("");
   const dispatch = useDispatch();
   // const layoutDispatch = useContext(LayoutContext.Dispatch);
-  const { actionsLoading, productForEdit } = useSelector(
+  const { actionsLoading, productForEdit, lsVoucherType } = useSelector(
     (state) => ({
       actionsLoading: state.products.actionsLoading,
       productForEdit: state.products.productForEdit,
+      lsVoucherType: state.products.lsType,
     }),
     shallowEqual
   );
 
   useEffect(() => {
     dispatch(actions.fetchProduct(id));
+    dispatch(actions.fetchLsVoucherTypeByConceptCode('TCP'));
   }, [id, dispatch]);
 
   useEffect(() => {
     let _title = id ? "" : "New Product";
     if (productForEdit && id) {
-      _title = `Edit product '${productForEdit.manufacture} ${productForEdit.model} - ${productForEdit.modelYear}'`;
+      _title = `Editar Comprobante [${productForEdit.voucherNumber}]`;
     }
 
     setTitle(_title);
     suhbeader.setTitle(_title);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [productForEdit, id]);
+  }, [productForEdit, lsVoucherType, id]);
+
+  const selectedTypes = (types) => {
+    const _types = [];
+    if(lsVoucherType) {
+      types.forEach((type) => {
+        const e = {id: type.id, name: type.name};
+        if (_types) {
+          _types.push(e);
+        }
+      });
+    }
+    return _types;
+  };
 
   const saveProduct = (values) => {
     if (!id) {
@@ -157,6 +172,7 @@ export function ProductEdit({
           {tab === "basic" && (
             <ProductEditForm
               actionsLoading={actionsLoading}
+              lsVoucherType={selectedTypes(lsVoucherType)}
               product={productForEdit || initProduct}
               btnRef={btnRef}
               saveProduct={saveProduct}

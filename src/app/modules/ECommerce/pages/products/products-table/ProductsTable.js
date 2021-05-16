@@ -80,7 +80,7 @@ export function ProductsTable() {
       text: "Fecha",
       sort: true,
       sortCaret: sortCaret,
-      formatter: columnFormatters.DateColumnFormatter,
+      formatter: columnFormatters.VoucherDateColumnFormatter,
     },
     /*{
       dataField: "color",

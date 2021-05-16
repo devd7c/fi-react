@@ -1,6 +1,6 @@
 import React from "react";
 
-export const DateColumnFormatter = (cellContent, row) => 
+export const VoucherDateColumnFormatter = (cellContent, row) => 
 <>{new Intl.DateTimeFormat("en-US", {
     day: "numeric",
     month: "numeric",

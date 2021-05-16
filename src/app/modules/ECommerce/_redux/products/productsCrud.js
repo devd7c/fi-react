@@ -8,6 +8,7 @@ const headers = {
 export const PRODUCTS_URL = "api/products";
 export const FIND_ALL = `${process.env.REACT_APP_API_URL}/voucher/find_all`;
 export const GET_ID = `${process.env.REACT_APP_API_URL}/voucher/read`;
+export const FIND_TYPES_BY_CONCEPT_CODE = `${process.env.REACT_APP_API_URL}/voucher/find_types_by_concept_code`;
 
 // CREATE =>  POST: add a new product to the server
 export function createProduct(product) {
@@ -24,6 +25,15 @@ export function getProductById(productId) {
   return axios({
     method: 'get',
     url: `${GET_ID}/${productId}`,
+    headers: headers
+  });
+}
+
+// Method from server should return QueryResultsModel(items: any[])
+export function findLsVoucherTypeByConceptCode(conceptCode) {
+  return axios({
+    method: 'get',
+    url: `${FIND_TYPES_BY_CONCEPT_CODE}/${conceptCode}`,
     headers: headers
   });
 }

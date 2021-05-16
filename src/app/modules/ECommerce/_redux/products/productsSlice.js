@@ -6,6 +6,7 @@ const initialProductsState = {
   totalCount: 0,
   entities: null,
   productForEdit: undefined,
+  lsType: null,
   lastError: null
 };
 export const callTypes = {
@@ -38,6 +39,12 @@ export const productsSlice = createSlice({
       state.actionsLoading = false;
       state.productForEdit = action.payload.productForEdit;
       state.error = null;
+    },
+    // getVoucherTypeByConceptCode
+    lsTypeFetched: (state, action) => {
+      state.actionsLoading = false;
+      state.error = null;
+      state.lsType = action.payload.lsType;;
     },
     // findProducts
     productsFetched: (state, action) => {

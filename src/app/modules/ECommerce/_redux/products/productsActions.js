@@ -35,6 +35,20 @@ export const fetchProduct = id => dispatch => {
     });
 };
 
+export const fetchLsVoucherTypeByConceptCode = conceptCode => dispatch => {
+  dispatch(actions.startCall({ callType: callTypes.list }));
+  return requestFromServer
+    .findLsVoucherTypeByConceptCode(conceptCode)
+    .then(response => {
+      const lsType = response.data;
+      dispatch(actions.lsTypeFetched({ lsType: lsType }));
+    })
+    .catch(error => {
+      error.clientMessage = "Can't find concepts";
+      dispatch(actions.catchError({ error, callType: callTypes.list }));
+    });
+};
+
 export const deleteProduct = id => dispatch => {
   dispatch(actions.startCall({ callType: callTypes.action }));
   return requestFromServer
