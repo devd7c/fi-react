@@ -15,28 +15,11 @@ import {
 
 // Validation schema
 const ProductEditSchema = Yup.object().shape({
-  voucherNumber: Yup.string()
-    .min(2, "Minimum 2 symbols")
-    .max(50, "Maximum 50 symbols")
-    .required("Model is required"),
-  manufacture: Yup.string()
-    .min(2, "Minimum 2 symbols")
-    .max(50, "Maximum 50 symbols")
-    .required("Manufacture is required"),
-  modelYear: Yup.number()
-    .min(1950, "1950 is minimum")
-    .max(2020, "2020 is maximum")
-    .required("Model year is required"),
-  mileage: Yup.number()
-    .min(0, "0 is minimum")
-    .max(1000000, "1000000 is maximum")
-    .required("Mileage is required"),
-  color: Yup.string().required("Color is required"),
-  price: Yup.number()
-    .min(1, "$1 is minimum")
-    .max(1000000, "$1000000 is maximum")
-    .required("Price is required"),
-  VINCode: Yup.string().required("VINCode is required"),
+  voucherNumber: Yup.number()
+    .required("Nro. comprobante es requerido"),
+  voucherDate: Yup.mixed()
+    .nullable(false)
+    .required("Fecha es requerido"),
 });
 
 export function ProductEditForm({
@@ -69,8 +52,8 @@ export function ProductEditForm({
                 </div>
                 <div className="col-lg-4">
                   <Field
-                    type="number"
                     name="voucherDate"
+                    type="datetime-local"
                     component={Input}
                     placeholder="Fecha Comprobante"
                     label="Fecha"
@@ -93,64 +76,6 @@ export function ProductEditForm({
                   as="textarea"
                   className="form-control"
                 />
-              </div>
-              <div className="form-group row">
-                <div className="col-lg-4">
-                  <Field
-                    type="number"
-                    name="mileage"
-                    component={Input}
-                    placeholder="Mileage"
-                    label="Mileage"
-                  />
-                </div>
-                <div className="col-lg-4">
-                  <Select name="color" label="Color">
-                    {AVAILABLE_COLORS.map((color) => (
-                      <option key={color} value={color}>
-                        {color}
-                      </option>
-                    ))}
-                  </Select>
-                </div>
-                <div className="col-lg-4">
-                  <Field
-                    type="number"
-                    name="price"
-                    component={Input}
-                    placeholder="Price"
-                    label="Price ($)"
-                    customFeedbackLabel="Please enter Price"
-                  />
-                </div>
-              </div>
-              <div className="form-group row">
-                <div className="col-lg-4">
-                  <Field
-                    name="VINCode"
-                    component={Input}
-                    placeholder="VIN code"
-                    label="VIN code"
-                  />
-                </div>
-                <div className="col-lg-4">
-                  <Select name="status" label="Status">
-                    {ProductStatusTitles.map((status, index) => (
-                      <option key={status} value={index}>
-                        {status}
-                      </option>
-                    ))}
-                  </Select>
-                </div>
-                <div className="col-lg-4">
-                  <Select name="condition" label="Condition">
-                    {ProductConditionTitles.map((condition, index) => (
-                      <option key={condition} value={index}>
-                        {condition}
-                      </option>
-                    ))}
-                  </Select>
-                </div>
               </div>
               <button
                 type="submit"

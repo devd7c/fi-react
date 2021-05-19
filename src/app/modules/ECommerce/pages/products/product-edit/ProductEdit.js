@@ -19,16 +19,19 @@ import { Remarks } from "../product-remarks/Remarks";
 
 const initProduct = {
   id: undefined,
-  model: "",
-  manufacture: "Pontiac",
-  modelYear: 2020,
-  mileage: 0,
+  voucherType: {
+    id: 0,
+    code: ""
+  },
+  voucherNumber: "",
+  voucherDate: "",
   description: "",
-  color: "Red",
-  price: 10000,
-  condition: 1,
-  status: 0,
-  VINCode: "",
+  ufv: 0.0000,
+  xbase: {
+    status: 1,
+    userAdmin: "admin",
+    societyId: "BO"
+  },
 };
 
 export function ProductEdit({
