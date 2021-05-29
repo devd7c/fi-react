@@ -52,7 +52,7 @@ export const fetchLsVoucherTypeByConceptCode = conceptCode => dispatch => {
 export const deleteProduct = id => dispatch => {
   dispatch(actions.startCall({ callType: callTypes.action }));
   return requestFromServer
-    .deleteProduct(id)
+    .deleteProduct(id,'admin')
     .then(response => {
       dispatch(actions.productDeleted({ id }));
     })
@@ -67,7 +67,7 @@ export const createProduct = productForCreation => dispatch => {
   return requestFromServer
     .createProduct(productForCreation)
     .then(response => {
-      const { product } = response.data;
+      const product = response.data;
       dispatch(actions.productCreated({ product }));
     })
     .catch(error => {
@@ -105,7 +105,7 @@ export const updateProductsStatus = (ids, status) => dispatch => {
 export const deleteProducts = ids => dispatch => {
   dispatch(actions.startCall({ callType: callTypes.action }));
   return requestFromServer
-    .deleteProducts(ids)
+    .deleteProducts(ids,'admin')
     .then(() => {
       dispatch(actions.productsDeleted({ ids }));
     })

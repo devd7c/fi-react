@@ -26,6 +26,7 @@ export function ProductEditForm({
   product,
   lsVoucherType,
   btnRef,
+  btnRefreshRef,
   saveProduct,
 }) {
   return (
@@ -83,6 +84,7 @@ export function ProductEditForm({
                 ref={btnRef}
                 onSubmit={() => handleSubmit()}
               ></button>
+              <button type="reset" style={{ display: "none" }} ref={btnRefreshRef} className="btn btn-secondary">Reset</button>
             </Form>
           </>
         )}

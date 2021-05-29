@@ -34,7 +34,7 @@ export function ProductsTable() {
     };
   }, [productsUIContext]);
 
-  // Getting curret state of products list from store (Redux)
+  // Getting current state of products list from store (Redux)
   const { currentState } = useSelector(
     (state) => ({ currentState: state.products }),
     shallowEqual

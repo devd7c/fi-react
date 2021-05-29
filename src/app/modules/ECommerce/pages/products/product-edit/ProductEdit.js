@@ -101,6 +101,16 @@ export function ProductEdit({
     }
   };
 
+  const btnRefreshRef = useRef();
+  const refreshClick = () => {
+    if (btnRefreshRef && btnRefreshRef.current) {
+      if (productForEdit && id) {
+        dispatch(actions.fetchProduct(id));
+      }
+      btnRefreshRef.current.click();
+    }
+  }
+
   const backToProductsList = () => {
     history.push(`/e-commerce/products`);
   };
@@ -116,12 +126,12 @@ export function ProductEdit({
             className="btn btn-light"
           >
             <i className="fa fa-arrow-left"></i>
-            Back
+            Atrás
           </button>
           {`  `}
-          <button className="btn btn-light ml-2">
+          <button className="btn btn-light ml-2" onClick={refreshClick}>
             <i className="fa fa-redo"></i>
-            Reset
+            Refrescar
           </button>
           {`  `}
           <button
@@ -129,7 +139,7 @@ export function ProductEdit({
             className="btn btn-primary ml-2"
             onClick={saveProductClick}
           >
-            Save
+            Guardar
           </button>
         </CardHeaderToolbar>
       </CardHeader>
@@ -178,6 +188,7 @@ export function ProductEdit({
               lsVoucherType={selectedTypes(lsVoucherType)}
               product={productForEdit || initProduct}
               btnRef={btnRef}
+              btnRefreshRef={btnRefreshRef}
               saveProduct={saveProduct}
             />
           )}
