@@ -19,16 +19,19 @@ import { Remarks } from "../product-remarks/Remarks";
 
 const initProduct = {
   id: undefined,
-  model: "",
-  manufacture: "Pontiac",
-  modelYear: 2020,
-  mileage: 0,
+  voucherType: {
+    id: 0,
+    code: ""
+  },
+  voucherNumber: "",
+  voucherDate: "",
   description: "",
-  color: "Red",
-  price: 10000,
-  condition: 1,
-  status: 0,
-  VINCode: "",
+  ufv: 0.0000,
+  xbase: {
+    status: 1,
+    userAdmin: "admin",
+    societyId: "BO"
+  },
 };
 
 export function ProductEdit({
@@ -45,28 +48,43 @@ export function ProductEdit({
   const [title, setTitle] = useState("");
   const dispatch = useDispatch();
   // const layoutDispatch = useContext(LayoutContext.Dispatch);
-  const { actionsLoading, productForEdit } = useSelector(
+  const { actionsLoading, productForEdit, lsVoucherType } = useSelector(
     (state) => ({
       actionsLoading: state.products.actionsLoading,
       productForEdit: state.products.productForEdit,
+      lsVoucherType: state.products.lsType,
     }),
     shallowEqual
   );
 
   useEffect(() => {
     dispatch(actions.fetchProduct(id));
+    dispatch(actions.fetchLsVoucherTypeByConceptCode('TCP'));
   }, [id, dispatch]);
 
   useEffect(() => {
     let _title = id ? "" : "New Product";
     if (productForEdit && id) {
-      _title = `Edit product '${productForEdit.manufacture} ${productForEdit.model} - ${productForEdit.modelYear}'`;
+      _title = `Editar Comprobante [${productForEdit.voucherNumber}]`;
     }
 
     setTitle(_title);
     suhbeader.setTitle(_title);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [productForEdit, id]);
+  }, [productForEdit, lsVoucherType, id]);
+
+  const selectedTypes = (types) => {
+    const _types = [];
+    if(lsVoucherType) {
+      types.forEach((type) => {
+        const e = {id: type.id, name: type.name};
+        if (_types) {
+          _types.push(e);
+        }
+      });
+    }
+    return _types;
+  };
 
   const saveProduct = (values) => {
     if (!id) {
@@ -83,6 +101,16 @@ export function ProductEdit({
     }
   };
 
+  const btnRefreshRef = useRef();
+  const refreshClick = () => {
+    if (btnRefreshRef && btnRefreshRef.current) {
+      if (productForEdit && id) {
+        dispatch(actions.fetchProduct(id));
+      }
+      btnRefreshRef.current.click();
+    }
+  }
+
   const backToProductsList = () => {
     history.push(`/e-commerce/products`);
   };
@@ -98,12 +126,12 @@ export function ProductEdit({
             className="btn btn-light"
           >
             <i className="fa fa-arrow-left"></i>
-            Back
+            Atrás
           </button>
           {`  `}
-          <button className="btn btn-light ml-2">
+          <button className="btn btn-light ml-2" onClick={refreshClick}>
             <i className="fa fa-redo"></i>
-            Reset
+            Refrescar
           </button>
           {`  `}
           <button
@@ -111,7 +139,7 @@ export function ProductEdit({
             className="btn btn-primary ml-2"
             onClick={saveProductClick}
           >
-            Save
+            Guardar
           </button>
         </CardHeaderToolbar>
       </CardHeader>
@@ -157,8 +185,10 @@ export function ProductEdit({
           {tab === "basic" && (
             <ProductEditForm
               actionsLoading={actionsLoading}
+              lsVoucherType={selectedTypes(lsVoucherType)}
               product={productForEdit || initProduct}
               btnRef={btnRef}
+              btnRefreshRef={btnRefreshRef}
               saveProduct={saveProduct}
             />
           )}

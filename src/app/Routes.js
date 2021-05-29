@@ -14,12 +14,15 @@ import { Logout, AuthPage } from "./modules/Auth";
 import ErrorsPage from "./modules/ErrorsExamples/ErrorsPage";
 
 export function Routes() {
-  const { isAuthorized } = useSelector(
+  /*Remove if auth is activate with URL.*/
+  const isAuthorized = true;
+  
+  /*const { isAuthorized } = useSelector(
     ({ auth }) => ({
       isAuthorized: auth.user != null,
     }),
     shallowEqual
-  );
+  );*/
 
   return (
     <Switch>
