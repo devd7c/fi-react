@@ -152,7 +152,7 @@ export function ProductEdit({
               role="tab"
               aria-selected={(tab === "basic").toString()}
             >
-              Basic info
+              Cabecera
             </a>
           </li>
           {id && (
@@ -165,7 +165,7 @@ export function ProductEdit({
                   role="button"
                   aria-selected={(tab === "remarks").toString()}
                 >
-                  Product remarks
+                  Detalle
                 </a>
               </li>
               <li className="nav-item" onClick={() => setTab("specs")}>
@@ -175,7 +175,7 @@ export function ProductEdit({
                   role="tab"
                   aria-selected={(tab === "specs").toString()}
                 >
-                  Product specifications
+                  Lista
                 </a>
               </li>
             </>
