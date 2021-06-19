@@ -21,14 +21,14 @@ export const fetchRemarks = (queryParams, productId) => dispatch => {
     });
 };
 
-export const fetchRemark = id => dispatch => {
+export const fetchDetailVoucher = id => dispatch => {
   if (!id) {
     return dispatch(actions.remarkFetched({ remarkForEdit: undefined }));
   }
 
   dispatch(actions.startCall({ callType: callTypes.action }));
   return requestFromServer
-    .getRemarkById(id)
+    .getDetailVoucherById(id)
     .then(response => {
       const remark = response.data;
       dispatch(actions.remarkFetched({ remarkForEdit: remark }));

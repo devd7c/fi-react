@@ -1,4 +1,4 @@
-/* Pagination Helprs */
+/* Pagination Helpers */
 import React from "react";
 
 export const getPagesCount = (totalSize, sizePerPage) => {

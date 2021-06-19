@@ -27,6 +27,7 @@ export {PaginationToolbar} from "./pagination/PaginationToolbar";
 export * from "./Card";
 export {default as AnimateLoading} from "./AnimateLoading";
 export {LoadingDialog} from "./LoadingDialog";
+export {ToastErrorLoading} from "./ToastErrorLoading";
 export {Notice} from "./Notice";
 export {SplashScreen} from "./SplashScreen";
 export {SVGIcon} from "./SVGIcon";

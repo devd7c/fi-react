@@ -12,13 +12,13 @@ import * as uiHelpers from "../ProductsUIHelpers";
 import {
   getSelectRow,
   getHandlerTableChange,
-  NoRecordsFoundMessage,
-  PleaseWaitMessage,
   sortCaret,
 } from "../../../../../../_metronic/_helpers";
 import * as columnFormatters from "./column-formatters";
 import { Pagination } from "../../../../../../_metronic/_partials/controls";
 import { useProductsUIContext } from "../ProductsUIContext";
+//
+import {ToastErrorLoading} from "../../../../../../_metronic/_partials/controls";
 
 export function ProductsTable() {
   // Products UI Context
@@ -39,7 +39,7 @@ export function ProductsTable() {
     (state) => ({ currentState: state.products }),
     shallowEqual
   );
-  const { totalCount, entities, listLoading } = currentState;
+  const { totalCount, entities, listLoading, error } = currentState;
   // Products Redux state
   const dispatch = useDispatch();
   useEffect(() => {
@@ -55,6 +55,7 @@ export function ProductsTable() {
       dataField: "id",
       text: "ID",
       sort: true,
+      hidden: true,
       sortCaret: sortCaret,
     },
     {
@@ -162,9 +163,8 @@ export function ProductsTable() {
                 })}
                 {...paginationTableProps}
               >
-                <PleaseWaitMessage entities={entities} />
-                <NoRecordsFoundMessage entities={entities} />
               </BootstrapTable>
+              <ToastErrorLoading isError={error==null? false: true}  text="Ocurrió un problema en cargar los datos, por favor inténtelo de nuevo ..." />
             </Pagination>
           );
         }}

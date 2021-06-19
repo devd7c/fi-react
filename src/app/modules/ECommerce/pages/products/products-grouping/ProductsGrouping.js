@@ -35,22 +35,6 @@ export function ProductsGrouping() {
               >
                 <i className="fa fa-trash"></i> Delete All
               </button>
-              &nbsp;
-              <button
-                type="button"
-                className="btn btn-light-primary font-weight-bolder font-size-sm"
-                onClick={productsUIProps.openFetchProductsDialog}
-              >
-                <i className="fa fa-stream"></i> Fetch Selected
-              </button>
-              &nbsp;
-              <button
-                type="button"
-                className="btn btn-light-primary font-weight-bolder font-size-sm"
-                onClick={productsUIProps.openUpdateProductsStatusDialog}
-              >
-                <i className="fa fa-sync-alt"></i> Update Status
-              </button>
             </div>
           </div>
         </div>

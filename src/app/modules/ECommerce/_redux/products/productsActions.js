@@ -9,7 +9,8 @@ export const fetchProducts = queryParams => dispatch => {
     .findProducts(queryParams)
     .then(response => {
       const { totalCount, entities } = response.data;
-      dispatch(actions.productsFetched({ totalCount, entities }));
+      const loading = false;
+      dispatch(actions.productsFetched({ totalCount, entities, loading }));
     })
     .catch(error => {
       error.clientMessage = "Can't find products";

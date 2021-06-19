@@ -32,10 +32,19 @@ export function RemarksUIProvider({ currentProductId, children }) {
   const [showEditRemarkDialog, setShowEditRemarkDialog] = useState(false);
   const initRemark = {
     id: undefined,
-    text: "",
-    type: 0,
-    dueDate: "01/07/2020",
-    carId: productId
+    voucher: {
+      id: productId
+    },
+    accountPlanCode: "",
+    accountPlanName: "",
+    description: "",
+    debitAmount: 0,
+    creditAmount: 0,
+    xbase: {
+      status: 1,
+      userAdmin: "admin",
+      societyId: "BO"
+    },
   };
   useEffect(()=> {
     initRemark.productId = currentProductId;

@@ -10,8 +10,6 @@ import {
   CardHeaderToolbar,
 } from "../../../../../../_metronic/_partials/controls";
 import { ProductEditForm } from "./ProductEditForm";
-import { Specifications } from "../product-specifications/Specifications";
-import { SpecificationsUIProvider } from "../product-specifications/SpecificationsUIContext";
 import { useSubheader } from "../../../../../../_metronic/layout";
 import { ModalProgressBar } from "../../../../../../_metronic/_partials/controls";
 import { RemarksUIProvider } from "../product-remarks/RemarksUIContext";
@@ -168,16 +166,6 @@ export function ProductEdit({
                   Detalle
                 </a>
               </li>
-              <li className="nav-item" onClick={() => setTab("specs")}>
-                <a
-                  className={`nav-link ${tab === "specs" && "active"}`}
-                  data-toggle="tab"
-                  role="tab"
-                  aria-selected={(tab === "specs").toString()}
-                >
-                  Lista
-                </a>
-              </li>
             </>
           )}
         </ul>
@@ -196,11 +184,6 @@ export function ProductEdit({
             <RemarksUIProvider currentProductId={id}>
               <Remarks />
             </RemarksUIProvider>
-          )}
-          {tab === "specs" && id && (
-            <SpecificationsUIProvider currentProductId={id}>
-              <Specifications />
-            </SpecificationsUIProvider>
           )}
         </div>
       </CardBody>

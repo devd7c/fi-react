@@ -57,7 +57,7 @@ export function RemarksFilter() {
                       type="text"
                       className="form-control"
                       name="searchText"
-                      placeholder="Search"
+                      placeholder="Buscar"
                       onBlur={handleBlur}
                       value={values.searchText}
                       onChange={(e) => {
@@ -66,7 +66,7 @@ export function RemarksFilter() {
                       }}
                     />
                     <small className="form-text text-muted">
-                      <b>Search</b> in all fields
+                      <b>Búsqueda</b> en todos los campos
                     </small>
                   </div>
                 </form>
@@ -80,7 +80,7 @@ export function RemarksFilter() {
               className="btn btn-primary"
               onClick={() => remarksUIProps.openNewRemarkDialog()}
             >
-              Create new remark
+              Añadir plan de cuentas
             </button>
           </div>
         </div>

@@ -16,9 +16,9 @@ export function RemarkEditDialogHeader({ id }) {
   );
 
   useEffect(() => {
-    let _title = id ? "" : "New Remark";
+    let _title = id ? "" : "Nuevo plan de cuentas";
     if (remarkForEdit && id) {
-      _title = "Edit remark";
+      _title = "Plan de cuentas";
     }
 
     setTitle(_title);

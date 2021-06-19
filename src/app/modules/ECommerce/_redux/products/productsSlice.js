@@ -47,9 +47,9 @@ export const productsSlice = createSlice({
       state.lsType = action.payload.lsType;;
     },
     // findProducts
-    productsFetched: (state, action) => {
+    productsFetched: (state, action, loading) => {
       const { totalCount, entities } = action.payload;
-      state.listLoading = false;
+      state.listLoading = loading;
       state.error = null;
       state.entities = entities;
       state.totalCount = totalCount;

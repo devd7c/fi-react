@@ -48,8 +48,8 @@ export function RemarkEditDialog() {
   );
 
   useEffect(() => {
-    // server request for getting remark by seleted id
-    dispatch(actions.fetchRemark(remarksUIProps.id));
+    // server request for getting remark by selected id
+    dispatch(actions.fetchDetailVoucher(remarksUIProps.id));
   }, [remarksUIProps.id, dispatch]);
 
   const saveRemark = (remark) => {

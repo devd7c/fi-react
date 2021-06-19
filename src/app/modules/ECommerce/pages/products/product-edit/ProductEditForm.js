@@ -6,12 +6,6 @@ import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { Input, Select } from "../../../../../../_metronic/_partials/controls";
-import {
-  AVAILABLE_COLORS,
-  SPECIFICATIONS_DICTIONARY,
-  ProductStatusTitles,
-  ProductConditionTitles,
-} from "../ProductsUIHelpers";
 
 // Validation schema
 const ProductEditSchema = Yup.object().shape({
