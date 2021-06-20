@@ -25,6 +25,8 @@ import {
   MetronicSubheaderProvider,
 } from "./_metronic/layout";
 import { MetronicI18nProvider } from "./_metronic/i18n";
+import { SnackbarProvider } from 'notistack';
+import { SnackbarUtilsConfigurator } from "./_metronic/_partials/controls/ToastStatusUtil";
 
 const { PUBLIC_URL } = process.env;
 
@@ -35,7 +37,10 @@ ReactDOM.render(
     <MetronicLayoutProvider>
       <MetronicSubheaderProvider>
         <MetronicSplashScreenProvider>
-          <App store={store} persistor={persistor} basename={PUBLIC_URL} />
+          <SnackbarProvider maxSnack={2} anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}>
+            <SnackbarUtilsConfigurator />
+            <App store={store} persistor={persistor} basename={PUBLIC_URL} />
+          </SnackbarProvider>
         </MetronicSplashScreenProvider>
       </MetronicSubheaderProvider>
     </MetronicLayoutProvider>

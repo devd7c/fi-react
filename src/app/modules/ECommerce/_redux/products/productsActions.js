@@ -8,9 +8,7 @@ export const fetchProducts = queryParams => dispatch => {
   return requestFromServer
     .findProducts(queryParams)
     .then(response => {
-      const { totalCount, entities } = response.data;
-      const loading = false;
-      dispatch(actions.productsFetched({ totalCount, entities, loading }));
+      dispatch(actions.productsFetched({ gridResponse: response }));
     })
     .catch(error => {
       error.clientMessage = "Can't find products";
@@ -81,8 +79,8 @@ export const updateProduct = product => dispatch => {
   dispatch(actions.startCall({ callType: callTypes.action }));
   return requestFromServer
     .updateProduct(product)
-    .then(() => {
-      dispatch(actions.productUpdated({ product }));
+    .then(response => {
+      dispatch(actions.productUpdated({ response }));
     })
     .catch(error => {
       error.clientMessage = "Can't update product";

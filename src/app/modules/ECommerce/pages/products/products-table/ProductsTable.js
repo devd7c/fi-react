@@ -18,7 +18,7 @@ import * as columnFormatters from "./column-formatters";
 import { Pagination } from "../../../../../../_metronic/_partials/controls";
 import { useProductsUIContext } from "../ProductsUIContext";
 //
-import {ToastErrorLoading} from "../../../../../../_metronic/_partials/controls";
+import { ToastErrorLoading } from "../../../../../../_metronic/_partials/controls";
 
 export function ProductsTable() {
   // Products UI Context

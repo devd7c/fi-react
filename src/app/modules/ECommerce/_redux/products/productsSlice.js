@@ -1,10 +1,13 @@
 import {createSlice} from "@reduxjs/toolkit";
+import { toastStatus } from "../../../../../_metronic/_partials/controls/ToastStatusUtil"
 
 const initialProductsState = {
   listLoading: false,
-  actionsLoading: false,
-  totalCount: 0,
   entities: null,
+  totalCount: 0,
+  status: null,
+  statusText: null,
+  actionsLoading: false,
   productForEdit: undefined,
   lsType: null,
   lastError: null
@@ -47,12 +50,15 @@ export const productsSlice = createSlice({
       state.lsType = action.payload.lsType;;
     },
     // findProducts
-    productsFetched: (state, action, loading) => {
-      const { totalCount, entities } = action.payload;
-      state.listLoading = loading;
+    productsFetched: (state, action) => {
+      const gridResponse = action.payload.gridResponse;
+      state.listLoading = false;
       state.error = null;
-      state.entities = entities;
-      state.totalCount = totalCount;
+      toastStatus.success(gridResponse.statusText);
+      state.totalCount = gridResponse.data.totalCount;
+      state.entities = gridResponse.data.entities;
+      state.status = gridResponse.status;
+      state.statusText = gridResponse.statusText;
     },
     // createProduct
     productCreated: (state, action) => {

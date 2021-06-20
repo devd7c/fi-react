@@ -1,10 +1,10 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import { ProductsLoadingDialog } from "./products-loading-dialog/ProductsLoadingDialog";
 import { ProductDeleteDialog } from "./product-delete-dialog/ProductDeleteDialog";
 import { ProductsDeleteDialog } from "./products-delete-dialog/ProductsDeleteDialog";
 import { ProductsCard } from "./ProductsCard";
 import { ProductsUIProvider } from "./ProductsUIContext";
+import { ProductsLoadingDialog } from "./products-loading-dialog/ProductsLoadingDialog";
 
 export function ProductsPage({ history }) {
   const productsUIEvents = {
