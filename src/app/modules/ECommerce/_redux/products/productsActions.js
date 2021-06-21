@@ -18,18 +18,30 @@ export const fetchProducts = queryParams => dispatch => {
 
 export const fetchProduct = id => dispatch => {
   if (!id) {
-    return dispatch(actions.productFetched({ productForEdit: undefined }));
+    return dispatch(actions.productFetched({ id: 0 }));
   }
 
   dispatch(actions.startCall({ callType: callTypes.action }));
   return requestFromServer
     .getProductById(id)
     .then(response => {
-      const product = response.data;
-      dispatch(actions.productFetched({ productForEdit: product }));
+      dispatch(actions.productFetched({ entityResponse: response }));
     })
     .catch(error => {
       error.clientMessage = "Can't find product";
+      dispatch(actions.catchError({ error, callType: callTypes.action }));
+    });
+};
+
+export const createProduct = productForCreation => dispatch => {
+  dispatch(actions.startCall({ callType: callTypes.action }));
+  return requestFromServer
+    .createProduct(productForCreation)
+    .then(response => {
+      dispatch(actions.productCreated({ entityResponse: response }));
+    })
+    .catch(error => {
+      error.clientMessage = "Can't create product";
       dispatch(actions.catchError({ error, callType: callTypes.action }));
     });
 };
@@ -39,8 +51,7 @@ export const fetchLsVoucherTypeByConceptCode = conceptCode => dispatch => {
   return requestFromServer
     .findLsVoucherTypeByConceptCode(conceptCode)
     .then(response => {
-      const lsType = response.data;
-      dispatch(actions.lsTypeFetched({ lsType: lsType }));
+      dispatch(actions.lsTypeFetched({ entityResponse: response }));
     })
     .catch(error => {
       error.clientMessage = "Can't find concepts";
@@ -57,20 +68,6 @@ export const deleteProduct = id => dispatch => {
     })
     .catch(error => {
       error.clientMessage = "Can't delete product";
-      dispatch(actions.catchError({ error, callType: callTypes.action }));
-    });
-};
-
-export const createProduct = productForCreation => dispatch => {
-  dispatch(actions.startCall({ callType: callTypes.action }));
-  return requestFromServer
-    .createProduct(productForCreation)
-    .then(response => {
-      const product = response.data;
-      dispatch(actions.productCreated({ product }));
-    })
-    .catch(error => {
-      error.clientMessage = "Can't create product";
       dispatch(actions.catchError({ error, callType: callTypes.action }));
     });
 };

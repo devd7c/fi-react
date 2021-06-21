@@ -1,7 +1,7 @@
 // React bootstrap table next =>
 // DOCS: https://react-bootstrap-table.github.io/react-bootstrap-table2/docs/
 // STORYBOOK: https://react-bootstrap-table.github.io/react-bootstrap-table2/storybook/index.html
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory, {
   PaginationProvider,
@@ -19,8 +19,11 @@ import { Pagination } from "../../../../../../_metronic/_partials/controls";
 import { useProductsUIContext } from "../ProductsUIContext";
 //
 import { ToastErrorLoading } from "../../../../../../_metronic/_partials/controls";
+import { toastStatus } from "../../../../../../_metronic/_partials/controls/ToastStatusUtil"
 
 export function ProductsTable() {
+  // Managing async state for dispatch (default = false)
+  const mounted = useRef(false);
   // Products UI Context
   const productsUIContext = useProductsUIContext();
   const productsUIProps = useMemo(() => {
@@ -39,12 +42,15 @@ export function ProductsTable() {
     (state) => ({ currentState: state.products }),
     shallowEqual
   );
-  const { totalCount, entities, listLoading, error } = currentState;
+  const { totalCount, entities, listLoading, status, error } = currentState;
   // Products Redux state
   const dispatch = useDispatch();
   useEffect(() => {
     // clear selections list
     productsUIProps.setIds([]);
+
+    // Managing async when is dispatch
+    mounted.current = true;
     // server call by queryParams
     dispatch(actions.fetchProducts(productsUIProps.queryParams));
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -126,6 +132,27 @@ export function ProductsTable() {
       },
     },
   ];
+  // Table status loading
+  const statusFetched = (getStatus, getLoading) => {
+    if(getLoading === false && mounted.current === true) {
+      switch (getStatus) {
+        case 200:
+          return toastStatus.success('Lista de Comprobantes OK ');
+        case 204:
+          return toastStatus.success('Lista de Comprobantes Vacía');
+        case 400:
+          return toastStatus.warning('Ocurrió un error al cargar los datos, por favor consulte con el administrador');
+        case 404:
+          return toastStatus.warning('Ocurrió un error al cargar los datos, por favor vuelva a intentarlo');
+        case 500:
+          return toastStatus.error('Error del servidor, por favor consulte con el administrador');
+        case 0:
+          return toastStatus.error('Error de conexión, por favor verifique su conexion a internet');
+        default:
+          return toastStatus.error('Error no administrado, por favor consulte con el administrador');
+      }
+    } else return '';
+  };
   // Table pagination properties
   const paginationOptions = {
     custom: true,
@@ -164,6 +191,7 @@ export function ProductsTable() {
                 {...paginationTableProps}
               >
               </BootstrapTable>
+              {statusFetched(status, listLoading)}
               <ToastErrorLoading isError={error==null? false: true}  text="Ocurrió un problema en cargar los datos, por favor inténtelo de nuevo ..." />
             </Pagination>
           );

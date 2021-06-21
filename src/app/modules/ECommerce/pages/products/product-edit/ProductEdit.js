@@ -46,11 +46,11 @@ export function ProductEdit({
   const [title, setTitle] = useState("");
   const dispatch = useDispatch();
   // const layoutDispatch = useContext(LayoutContext.Dispatch);
-  const { actionsLoading, productForEdit, lsVoucherType } = useSelector(
+  const { actionsLoading, productForEdit, lsType } = useSelector(
     (state) => ({
       actionsLoading: state.products.actionsLoading,
       productForEdit: state.products.productForEdit,
-      lsVoucherType: state.products.lsType,
+      lsType: state.products.lsType,
     }),
     shallowEqual
   );
@@ -69,11 +69,11 @@ export function ProductEdit({
     setTitle(_title);
     suhbeader.setTitle(_title);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [productForEdit, lsVoucherType, id]);
+  }, [productForEdit, lsType, id]);
 
   const selectedTypes = (types) => {
     const _types = [];
-    if(lsVoucherType) {
+    if(lsType) {
       types.forEach((type) => {
         const e = {id: type.id, name: type.name};
         if (_types) {
@@ -173,7 +173,7 @@ export function ProductEdit({
           {tab === "basic" && (
             <ProductEditForm
               actionsLoading={actionsLoading}
-              lsVoucherType={selectedTypes(lsVoucherType)}
+              lsVoucherType={selectedTypes(lsType)}
               product={productForEdit || initProduct}
               btnRef={btnRef}
               btnRefreshRef={btnRefreshRef}

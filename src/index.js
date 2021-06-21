@@ -37,7 +37,7 @@ ReactDOM.render(
     <MetronicLayoutProvider>
       <MetronicSubheaderProvider>
         <MetronicSplashScreenProvider>
-          <SnackbarProvider maxSnack={2} anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}>
+          <SnackbarProvider maxSnack={2} anchorOrigin={{ horizontal: 'left', vertical: 'top' }}>
             <SnackbarUtilsConfigurator />
             <App store={store} persistor={persistor} basename={PUBLIC_URL} />
           </SnackbarProvider>
