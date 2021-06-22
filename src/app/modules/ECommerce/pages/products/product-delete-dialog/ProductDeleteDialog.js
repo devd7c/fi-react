@@ -18,8 +18,11 @@ export function ProductDeleteDialog({ id, show, onHide }) {
 
   // Products Redux state
   const dispatch = useDispatch();
-  const { isLoading } = useSelector(
-    (state) => ({ isLoading: state.products.actionsLoading }),
+  const { actionStatus, actionLoading } = useSelector(
+    (state) => ({ 
+      actionLoading: state.products.actionLoading,
+      actionStatus: state.products.actionStatus
+    }),
     shallowEqual
   );
 
@@ -32,7 +35,9 @@ export function ProductDeleteDialog({ id, show, onHide }) {
   }, [id]);
 
   // looking for loading/dispatch
-  useEffect(() => {}, [isLoading, dispatch]);
+  useEffect(() => {
+    dispatch(actions.resetActionsLoading(false));
+  }, [actionStatus, actionLoading, dispatch]);
 
   const deleteProduct = () => {
     // server request for deleting product by id
@@ -52,17 +57,17 @@ export function ProductDeleteDialog({ id, show, onHide }) {
       onHide={onHide}
       aria-labelledby="example-modal-sizes-title-lg"
     >
-      {isLoading && <ModalProgressBar variant="query" />}
+      {actionLoading && <ModalProgressBar variant="query" />}
       <Modal.Header closeButton>
         <Modal.Title id="example-modal-sizes-title-lg">
-          Product Delete
+          Eliminar Comprobante
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        {!isLoading && (
+        {!actionLoading && (
           <span>Are you sure to permanently delete this product?</span>
         )}
-        {isLoading && <span>Product is deleting...</span>}
+        {actionLoading && <span>Product is deleting...</span>}
       </Modal.Body>
       <Modal.Footer>
         <div>
@@ -71,7 +76,7 @@ export function ProductDeleteDialog({ id, show, onHide }) {
             onClick={onHide}
             className="btn btn-light btn-elevate"
           >
-            Cancel
+            Cancelar
           </button>
           <> </>
           <button
@@ -79,7 +84,7 @@ export function ProductDeleteDialog({ id, show, onHide }) {
             onClick={deleteProduct}
             className="btn btn-delete btn-elevate"
           >
-            Delete
+            Eliminar
           </button>
         </div>
       </Modal.Footer>

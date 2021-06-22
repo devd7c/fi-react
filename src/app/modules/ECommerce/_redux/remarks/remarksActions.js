@@ -12,8 +12,7 @@ export const fetchRemarks = (queryParams, productId) => dispatch => {
   return requestFromServer
     .findRemarks(queryParams, productId)
     .then(response => {
-      const { totalCount, entities } = response.data;
-      dispatch(actions.remarksFetched({ totalCount, entities }));
+      dispatch(actions.remarksFetched({ gridResponse: response }));
     })
     .catch(error => {
       error.clientMessage = "Can't find remarks";

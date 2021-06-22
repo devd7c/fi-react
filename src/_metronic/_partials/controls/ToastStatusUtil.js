@@ -15,7 +15,7 @@ export const SnackbarUtilsConfigurator = () => {
   return <InnerSnackbarUtilsConfigurator setUseSnackbarRef={setUseSnackbarRef} />
 }
 
-export const toastStatus = {
+export const ToastStatusUtil = {
   success(msg) {
     this.toast(msg, 'success')
   },

@@ -102,8 +102,8 @@ export function NoRecordsFoundMessage({ entities }) {
   const customersList = entities === null ? [] : entities;
   return (
     <>
-      {customersList.length === 0 && entities !== null && (
-        <div>No records found</div>
+      {customersList.length === 0 && (
+        <div>No se encontró ningún resultado</div>
       )}
     </>
   );

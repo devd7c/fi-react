@@ -17,8 +17,8 @@ const ProductEditSchema = Yup.object().shape({
 });
 
 export function ProductEditForm({
-  product,
-  lsVoucherType,
+  lsType,
+  voucher,
   btnRef,
   btnRefreshRef,
   saveProduct,
@@ -27,7 +27,7 @@ export function ProductEditForm({
     <>
       <Formik
         enableReinitialize={true}
-        initialValues={product}
+        initialValues={voucher}
         validationSchema={ProductEditSchema}
         onSubmit={(values) => {
           saveProduct(values);
@@ -56,7 +56,7 @@ export function ProductEditForm({
                 </div>
                 <div className="col-lg-4">
                   <Select name="voucherType.id" label="Manufacture">
-                      {lsVoucherType.map((type) => (
+                      {lsType.map((type) => (
                         <option key={type.id} value={type.id}>
                           {type.name}
                         </option>
@@ -72,13 +72,16 @@ export function ProductEditForm({
                   className="form-control"
                 />
               </div>
-              <button
+              <button 
                 type="submit"
                 style={{ display: "none" }}
                 ref={btnRef}
                 onSubmit={() => handleSubmit()}
               ></button>
-              <button type="reset" style={{ display: "none" }} ref={btnRefreshRef} className="btn btn-secondary">Reset</button>
+              <button 
+                type="reset" 
+                style={{ display: "none" }} 
+                ref={btnRefreshRef} className="btn btn-secondary">Reset</button>
             </Form>
           </>
         )}

@@ -15,7 +15,7 @@ import { ModalProgressBar } from "../../../../../../_metronic/_partials/controls
 import { RemarksUIProvider } from "../product-remarks/RemarksUIContext";
 import { Remarks } from "../product-remarks/Remarks";
 
-const initProduct = {
+const initVoucher = {
   id: undefined,
   voucherType: {
     id: 0,
@@ -39,17 +39,17 @@ export function ProductEdit({
   },
 }) {
   // Subheader
-  const suhbeader = useSubheader();
+  const subheader = useSubheader();
 
   // Tabs
   const [tab, setTab] = useState("basic");
   const [title, setTitle] = useState("");
   const dispatch = useDispatch();
   // const layoutDispatch = useContext(LayoutContext.Dispatch);
-  const { actionsLoading, productForEdit, lsType } = useSelector(
+  const { actionLoading, entityForEdit, lsType } = useSelector(
     (state) => ({
-      actionsLoading: state.products.actionsLoading,
-      productForEdit: state.products.productForEdit,
+      actionLoading: state.products.actionLoading,
+      entityForEdit: state.products.entityForEdit,
       lsType: state.products.lsType,
     }),
     shallowEqual
@@ -61,15 +61,15 @@ export function ProductEdit({
   }, [id, dispatch]);
 
   useEffect(() => {
-    let _title = id ? "" : "New Product";
-    if (productForEdit && id) {
-      _title = `Editar Comprobante [${productForEdit.voucherNumber}]`;
+    let _title = id ? "" : "Nuevo Comprobante";
+    if (entityForEdit && id) {
+      _title = `Editar Comprobante [${entityForEdit.voucherNumber}]`;
     }
 
     setTitle(_title);
-    suhbeader.setTitle(_title);
+    subheader.setTitle(_title);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [productForEdit, lsType, id]);
+  }, [entityForEdit, lsType, id]);
 
   const selectedTypes = (types) => {
     const _types = [];
@@ -102,7 +102,7 @@ export function ProductEdit({
   const btnRefreshRef = useRef();
   const refreshClick = () => {
     if (btnRefreshRef && btnRefreshRef.current) {
-      if (productForEdit && id) {
+      if (entityForEdit && id) {
         dispatch(actions.fetchProduct(id));
       }
       btnRefreshRef.current.click();
@@ -115,7 +115,7 @@ export function ProductEdit({
 
   return (
     <Card>
-      {actionsLoading && <ModalProgressBar />}
+      {actionLoading && <ModalProgressBar />}
       <CardHeader title={title}>
         <CardHeaderToolbar>
           <button
@@ -172,9 +172,9 @@ export function ProductEdit({
         <div className="mt-5">
           {tab === "basic" && (
             <ProductEditForm
-              actionsLoading={actionsLoading}
-              lsVoucherType={selectedTypes(lsType)}
-              product={productForEdit || initProduct}
+              actionLoading={actionLoading}
+              lsType={selectedTypes(lsType)}
+              voucher={entityForEdit || initVoucher}
               btnRef={btnRef}
               btnRefreshRef={btnRefreshRef}
               saveProduct={saveProduct}

@@ -1,11 +1,18 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 const initialRemarksState = {
-  listLoading: false,
+  //Action
+  actionStatus: 0,
   actionsLoading: false,
-  totalCount: 0,
-  entities: null,
   remarkForEdit: undefined,
+  //List
+  listLoading: false,
+  entities: null,
+  totalCount: 0,
+  //General
+  status: 0,
+  statusText: null,
+  error:null,
   lastError: null
 };
 export const callTypes = {
@@ -21,16 +28,42 @@ export const remarksSlice = createSlice({
       state.error = `${action.type}: ${action.payload.error}`;
       if (action.payload.callType === callTypes.list) {
         state.listLoading = false;
+        state.status = 0;
+        state.actionStatus = 0;
       } else {
         state.actionsLoading = false;
+        state.status = 0;
+        state.actionStatus = 0;
       }
     },
     startCall: (state, action) => {
       state.error = null;
       if (action.payload.callType === callTypes.list) {
         state.listLoading = true;
+        state.status = 0;
+        state.actionStatus = 0;
       } else {
         state.actionsLoading = true;
+        state.status = 0;
+        state.actionStatus = 0;
+      }
+    },
+    // findRemarks
+    remarksFetched: (state, action) => {
+      const gridResponse = action.payload.gridResponse;
+      const status = gridResponse.status;
+      state.listLoading = false;
+      state.actionsLoading = null;
+      state.error = null;
+      state.totalCount = gridResponse.data.totalCount === undefined? 0 : gridResponse.data.totalCount;
+      state.status = status;
+      state.statusText = gridResponse.statusText;
+      state.statusName = 'Lista de plan de cuentas ';
+      if(status === 200) {
+        state.entities = gridResponse.data.entities;
+      }
+      if(status === 204) {
+        state.entities = null;
       }
     },
     // getRemarkById
@@ -38,14 +71,6 @@ export const remarksSlice = createSlice({
       state.actionsLoading = false;
       state.remarkForEdit = action.payload.remarkForEdit;
       state.error = null;
-    },
-    // findRemarks
-    remarksFetched: (state, action) => {
-      const { totalCount, entities } = action.payload;
-      state.listLoading = false;
-      state.error = null;
-      state.entities = entities;
-      state.totalCount = totalCount;
     },
     // createRemark
     remarkCreated: (state, action) => {

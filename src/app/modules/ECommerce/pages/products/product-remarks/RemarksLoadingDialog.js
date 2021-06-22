@@ -8,5 +8,5 @@ export function RemarksLoadingDialog() {
     shallowEqual
   );
   useEffect(() => {}, [isLoading]);
-  return <LoadingDialog isLoading={isLoading} text="Loading ..." />;
+  return <LoadingDialog isLoading={isLoading} text="Cargando ..." />;
 }

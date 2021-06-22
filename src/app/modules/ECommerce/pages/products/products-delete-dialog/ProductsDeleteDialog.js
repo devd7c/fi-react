@@ -19,13 +19,16 @@ export function ProductsDeleteDialog({ show, onHide }) {
 
   // Products Redux state
   const dispatch = useDispatch();
-  const { isLoading } = useSelector(
-    (state) => ({ isLoading: state.products.actionsLoading }),
+  const { actionLoading, actionStatus } = useSelector(
+    (state) => ({ 
+      actionLoading: state.products.actionLoading,
+      actionStatus: state.products.actionStatus
+    }),
     shallowEqual
   );
 
   // looking for loading/dispatch
-  useEffect(() => {}, [isLoading, dispatch]);
+  useEffect(() => {}, [actionLoading, actionStatus, dispatch]);
 
   // if there weren't selected products we should close modal
   useEffect(() => {
@@ -36,7 +39,7 @@ export function ProductsDeleteDialog({ show, onHide }) {
   }, [productsUIProps.ids]);
 
   const deleteProducts = () => {
-    // server request for deleting product by seleted ids
+    // server request for deleting product by selected ids
     dispatch(actions.deleteProducts(productsUIProps.ids)).then(() => {
       // refresh list after deletion
       dispatch(actions.fetchProducts(productsUIProps.queryParams)).then(() => {
@@ -54,17 +57,17 @@ export function ProductsDeleteDialog({ show, onHide }) {
       onHide={onHide}
       aria-labelledby="example-modal-sizes-title-lg"
     >
-      {isLoading && <ModalProgressBar />}
+      {actionLoading && <ModalProgressBar />}
       <Modal.Header closeButton>
         <Modal.Title id="example-modal-sizes-title-lg">
-          Products Delete
+          Eliminar Comprobantes
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        {!isLoading && (
+        {!actionLoading && (
           <span>Are you sure to permanently delete selected products?</span>
         )}
-        {isLoading && <span>Products are deleting...</span>}
+        {actionLoading && <span>Products are deleting...</span>}
       </Modal.Body>
       <Modal.Footer>
         <div>
@@ -73,7 +76,7 @@ export function ProductsDeleteDialog({ show, onHide }) {
             onClick={onHide}
             className="btn btn-light btn-elevate"
           >
-            Cancel
+            Cancelar
           </button>
           <> </>
           <button
@@ -81,7 +84,7 @@ export function ProductsDeleteDialog({ show, onHide }) {
             onClick={deleteProducts}
             className="btn btn-primary btn-elevate"
           >
-            Delete
+            Eliminar
           </button>
         </div>
       </Modal.Footer>

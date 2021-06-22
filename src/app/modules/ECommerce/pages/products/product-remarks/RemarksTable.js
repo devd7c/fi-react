@@ -1,7 +1,7 @@
 // React bootstrap table next =>
 // DOCS: https://react-bootstrap-table.github.io/react-bootstrap-table2/docs/
 // STORYBOOK: https://react-bootstrap-table.github.io/react-bootstrap-table2/storybook/index.html
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory, {
@@ -15,12 +15,16 @@ import {
   getSelectRow,
   getHandlerTableChange,
   NoRecordsFoundMessage,
-  PleaseWaitMessage,
   sortCaret,
 } from "../../../../../../_metronic/_helpers";
 import { useRemarksUIContext } from "./RemarksUIContext";
+//
+import { ToastErrorLoading } from "../../../../../../_metronic/_partials/controls";
+import { ToastStatusLoading } from "../../../../../../_metronic/_partials/controls";
 
 export function RemarksTable() {
+  // Managing async state for dispatch (default = false)
+  const mounted = useRef(false);
   // Remarks UI Context
   const remarksUIContext = useRemarksUIContext();
   const remarksUIProps = useMemo(() => {
@@ -35,15 +39,19 @@ export function RemarksTable() {
     };
   }, [remarksUIContext]);
 
-  // Getting curret state of products list from store (Redux)
+  // Getting current state of products list from store (Redux)
   const { currentState } = useSelector(
     (state) => ({ currentState: state.remarks }),
     shallowEqual
   );
-  const { totalCount, entities, listLoading } = currentState;
+  const { totalCount, entities, listLoading, actionsLoading, status, statusName, error } = currentState;
+  // Products Redux state
   const dispatch = useDispatch();
   useEffect(() => {
+    // clear selections list
     remarksUIProps.setIds([]);
+    // Managing async when is dispatch
+    mounted.current = true;
     dispatch(
       actions.fetchRemarks(remarksUIProps.queryParams, remarksUIProps.productId)
     );
@@ -139,9 +147,10 @@ export function RemarksTable() {
                 })}
                 {...paginationTableProps}
               >
-                <PleaseWaitMessage entities={entities} />
-                <NoRecordsFoundMessage entities={entities} />
               </BootstrapTable>
+              {mounted.current === true? <ToastStatusLoading getStatus={status} getLoading={listLoading} getActionLoading={actionsLoading} getText={statusName} />:''}
+              <NoRecordsFoundMessage entities={entities} />
+              <ToastErrorLoading isError={error==null? false: true}  text="Ocurrió un problema en cargar los datos, por favor inténtelo de nuevo ..." />
             </Pagination>
           );
         }}
