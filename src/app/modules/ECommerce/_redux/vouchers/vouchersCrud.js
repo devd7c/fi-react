@@ -5,8 +5,6 @@ const headers = {
   Authorization: ''
 };
 
-export const PRODUCTS_URL = "api/products";
-
 export const FIND_ALL = `${process.env.REACT_APP_API_URL}/voucher/find_all`;
 export const GET_ID = `${process.env.REACT_APP_API_URL}/voucher/read`;
 export const FIND_TYPES_BY_CONCEPT_CODE = `${process.env.REACT_APP_API_URL}/voucher/find_types_by_concept_code`;
@@ -26,11 +24,6 @@ export function createProduct(product) {
     data: product,
     headers: headers
   });
-}
-
-// READ
-export function getAllProducts() {
-  return axios.get(PRODUCTS_URL);
 }
 
 export function getProductById(productId) {
@@ -63,7 +56,7 @@ export function findProducts(queryParams) {
   });
 }
 
-// UPDATE => PUT: update the procuct on the server
+// UPDATE => PUT: update the product on the server
 export function updateProduct(product) {
   //return axios.put(`${PRODUCTS_URL}/${product.id}`, { product });
   return axios({
@@ -71,14 +64,6 @@ export function updateProduct(product) {
     url: `${UPDATE}/${product.id}`,
     data: product,
     headers: headers
-  });
-}
-
-// UPDATE Status
-export function updateStatusForProducts(ids, status) {
-  return axios.post(`${PRODUCTS_URL}/updateStatusForProducts`, {
-    ids,
-    status
   });
 }
 
@@ -92,7 +77,7 @@ export function deleteProduct(id,userAdmin) {
   });
 }
 
-// DELETE Products by ids
+// DELETE vouchers by ids
 export function deleteProducts(ids,userAdmin) {
   const lsEntities = [];
   for(var i = 0; i < ids.length; i++) {

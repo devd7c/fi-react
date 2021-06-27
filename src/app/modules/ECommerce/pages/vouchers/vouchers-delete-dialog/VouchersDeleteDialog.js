@@ -3,26 +3,26 @@ import React, { useEffect, useMemo } from "react";
 import { Modal } from "react-bootstrap";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { ModalProgressBar } from "../../../../../../_metronic/_partials/controls";
-import * as actions from "../../../_redux/products/productsActions";
-import { useProductsUIContext } from "../ProductsUIContext";
+import * as actions from "../../../_redux/vouchers/vouchersActions";
+import { useVouchersUIContext } from "../VouchersUIContext";
 
-export function ProductsDeleteDialog({ show, onHide }) {
-  // Products UI Context
-  const productsUIContext = useProductsUIContext();
-  const productsUIProps = useMemo(() => {
+export function VouchersDeleteDialog({ show, onHide }) {
+  // vouchers UI Context
+  const vouchersUIContext = useVouchersUIContext();
+  const vouchersUIProps = useMemo(() => {
     return {
-      ids: productsUIContext.ids,
-      setIds: productsUIContext.setIds,
-      queryParams: productsUIContext.queryParams,
+      ids: vouchersUIContext.ids,
+      setIds: vouchersUIContext.setIds,
+      queryParams: vouchersUIContext.queryParams,
     };
-  }, [productsUIContext]);
+  }, [vouchersUIContext]);
 
-  // Products Redux state
+  // vouchers Redux state
   const dispatch = useDispatch();
   const { actionLoading, actionStatus } = useSelector(
     (state) => ({ 
-      actionLoading: state.products.actionLoading,
-      actionStatus: state.products.actionStatus
+      actionLoading: state.vouchers.actionLoading,
+      actionStatus: state.vouchers.actionStatus
     }),
     shallowEqual
   );
@@ -30,21 +30,21 @@ export function ProductsDeleteDialog({ show, onHide }) {
   // looking for loading/dispatch
   useEffect(() => {}, [actionLoading, actionStatus, dispatch]);
 
-  // if there weren't selected products we should close modal
+  // if there weren't selected vouchers we should close modal
   useEffect(() => {
-    if (!productsUIProps.ids || productsUIProps.ids.length === 0) {
+    if (!vouchersUIProps.ids || vouchersUIProps.ids.length === 0) {
       onHide();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [productsUIProps.ids]);
+  }, [vouchersUIProps.ids]);
 
   const deleteProducts = () => {
     // server request for deleting product by selected ids
-    dispatch(actions.deleteProducts(productsUIProps.ids)).then(() => {
+    dispatch(actions.deleteProducts(vouchersUIProps.ids)).then(() => {
       // refresh list after deletion
-      dispatch(actions.fetchProducts(productsUIProps.queryParams)).then(() => {
+      dispatch(actions.fetchProducts(vouchersUIProps.queryParams)).then(() => {
         // clear selections list
-        productsUIProps.setIds([]);
+        vouchersUIProps.setIds([]);
         // closing delete modal
         onHide();
       });
@@ -65,9 +65,9 @@ export function ProductsDeleteDialog({ show, onHide }) {
       </Modal.Header>
       <Modal.Body>
         {!actionLoading && (
-          <span>Are you sure to permanently delete selected products?</span>
+          <span>Esta seguro de eliminar los Comprobantes seleccionados?</span>
         )}
-        {actionLoading && <span>Products are deleting...</span>}
+        {actionLoading && <span>Eliminando comprobantes...</span>}
       </Modal.Body>
       <Modal.Footer>
         <div>

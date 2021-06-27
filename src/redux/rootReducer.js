@@ -3,13 +3,13 @@ import {combineReducers} from "redux";
 
 import * as auth from "../app/modules/Auth/_redux/authRedux";
 import {customersSlice} from "../app/modules/ECommerce/_redux/customers/customersSlice";
-import {productsSlice} from "../app/modules/ECommerce/_redux/products/productsSlice";
+import {vouchersSlice} from "../app/modules/ECommerce/_redux/vouchers/vouchersSlice";
 import {remarksSlice} from "../app/modules/ECommerce/_redux/remarks/remarksSlice";
 
 export const rootReducer = combineReducers({
   auth: auth.reducer,
   customers: customersSlice.reducer,
-  products: productsSlice.reducer,
+  vouchers: vouchersSlice.reducer,
   remarks: remarksSlice.reducer
 });
 

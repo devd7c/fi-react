@@ -1,16 +1,16 @@
 import React, { createContext, useContext, useState, useCallback } from "react";
 import { isEqual, isFunction } from "lodash";
-import { initialFilter } from "./ProductsUIHelpers";
+import { initialFilter } from "./VouchersUIHelpers";
 
-const ProductsUIContext = createContext();
+const VouchersUIContext = createContext();
 
-export function useProductsUIContext() {
-  return useContext(ProductsUIContext);
+export function useVouchersUIContext() {
+  return useContext(VouchersUIContext);
 }
 
-export const ProductsUIConsumer = ProductsUIContext.Consumer;
+export const ProductsUIConsumer = VouchersUIContext.Consumer;
 
-export function ProductsUIProvider({ productsUIEvents, children }) {
+export function VouchersUIProvider({ productsUIEvents, children }) {
   const [queryParams, setQueryParamsBase] = useState(initialFilter);
   const [ids, setIds] = useState([]);
   const setQueryParams = useCallback((nextQueryParams) => {
@@ -43,8 +43,8 @@ export function ProductsUIProvider({ productsUIEvents, children }) {
   };
 
   return (
-    <ProductsUIContext.Provider value={value}>
+    <VouchersUIContext.Provider value={value}>
       {children}
-    </ProductsUIContext.Provider>
+    </VouchersUIContext.Provider>
   );
 }

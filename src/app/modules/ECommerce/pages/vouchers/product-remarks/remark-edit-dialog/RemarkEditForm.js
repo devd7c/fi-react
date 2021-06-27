@@ -43,27 +43,49 @@ export function RemarkEditForm({ saveRemark, remark, actionsLoading, onHide }) {
               )}
               <Form className="form form-label-right">
                 <div className="form-group row">
-                  <div className="col-lg-12">
+                  <div className="col-lg-4">
                     <Field
-                      name="text"
+                      name="accountPlanCode"
                       component={Input}
-                      placeholder="Text"
-                      label="Text"
+                      placeholder="codigo"
+                      label="Codigo"
+                    />
+                  </div>
+                  <div className="col-lg-8">
+                    <Field
+                      name="accountPlanName"
+                      component={Input}
+                      placeholder="nombre"
+                      label="Nombre"
                     />
                   </div>
                 </div>
                 <div className="form-group row">
                   <div className="col-lg-12">
-                    <DatePickerField name="dueDate" label="Due date" />
+                    <Field
+                      name="description"
+                      component={Input}
+                      placeholder="breve descripcion"
+                      label="Descripcion"
+                    />
                   </div>
                 </div>
                 <div className="form-group row">
                   <div className="col-lg-12">
-                    <Select name="type" label="Type">
-                      <option value="0">Info</option>
-                      <option value="1">Note</option>
-                      <option value="2">Reminder</option>
-                    </Select>
+                    <Field
+                      name="description"
+                      component={Input}
+                      placeholder="breve descripcion"
+                      label="Descripcion"
+                    />
+                  </div>
+                  <div className="col-lg-12">
+                    <Field
+                      name="description"
+                      component={Input}
+                      placeholder="breve descripcion"
+                      label="Descripcion"
+                    />
                   </div>
                 </div>
               </Form>

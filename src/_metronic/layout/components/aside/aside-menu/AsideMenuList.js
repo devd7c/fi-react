@@ -1631,15 +1631,15 @@ export function AsideMenuList({ layoutProps }) {
               {/*begin::2 Level*/}
               <li
                 className={`menu-item ${getMenuItemActive(
-                  "/e-commerce/products"
+                  "/e-commerce/vouchers"
                 )}`}
                 aria-haspopup="true"
               >
-                <NavLink className="menu-link" to="/e-commerce/products">
+                <NavLink className="menu-link" to="/e-commerce/vouchers">
                   <i className="menu-bullet menu-bullet-dot">
                     <span />
                   </i>
-                  <span className="menu-text">Products</span>
+                  <span className="menu-text">Comprobantes</span>
                 </NavLink>
               </li>
               {/*end::2 Level*/}

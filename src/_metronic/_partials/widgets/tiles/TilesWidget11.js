@@ -28,7 +28,7 @@ export function TilesWidget11({
             href="#"
             className={`text-inverse-${baseColor} font-weight-bold font-size-lg mt-1`}
           >
-            New Products
+            Nuevo Comprobante
           </a>
         </div>
       </div>

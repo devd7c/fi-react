@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { Formik } from "formik";
 import { isEqual } from "lodash";
-import { useProductsUIContext } from "../ProductsUIContext";
+import { useVouchersUIContext } from "../VouchersUIContext";
 
 const prepareFilter = (queryParams, values) => {
   const { searchText } = values;
@@ -17,21 +17,21 @@ const prepareFilter = (queryParams, values) => {
   return newQueryParams;
 };
 
-export function ProductsFilter({ listLoading }) {
-  // Products UI Context
-  const productsUIContext = useProductsUIContext();
-  const productsUIProps = useMemo(() => {
+export function VouchersFilter({ listLoading }) {
+  // vouchers UI Context
+  const vouchersUIContext = useVouchersUIContext();
+  const vouchersUIProps = useMemo(() => {
     return {
-      setQueryParams: productsUIContext.setQueryParams,
-      queryParams: productsUIContext.queryParams,
+      setQueryParams: vouchersUIContext.setQueryParams,
+      queryParams: vouchersUIContext.queryParams,
     };
-  }, [productsUIContext]);
+  }, [vouchersUIContext]);
 
   const applyFilter = (values) => {
-    const newQueryParams = prepareFilter(productsUIProps.queryParams, values);
-    if (!isEqual(newQueryParams, productsUIProps.queryParams)) {
+    const newQueryParams = prepareFilter(vouchersUIProps.queryParams, values);
+    if (!isEqual(newQueryParams, vouchersUIProps.queryParams)) {
       newQueryParams.pageNumber = 1;
-      productsUIProps.setQueryParams(newQueryParams);
+      vouchersUIProps.setQueryParams(newQueryParams);
     }
   };
 

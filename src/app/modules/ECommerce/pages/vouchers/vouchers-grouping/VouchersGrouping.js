@@ -1,19 +1,19 @@
 import React, { useMemo } from "react";
-import { useProductsUIContext } from "../ProductsUIContext";
+import { useVouchersUIContext } from "../VouchersUIContext";
 
-export function ProductsGrouping() {
-  // Products UI Context
-  const productsUIContext = useProductsUIContext();
-  const productsUIProps = useMemo(() => {
+export function VouchersGrouping() {
+  // vouchers UI Context
+  const vouchersUIContext = useVouchersUIContext();
+  const vouchersUIProps = useMemo(() => {
     return {
-      ids: productsUIContext.ids,
-      setIds: productsUIContext.setIds,
-      openDeleteProductsDialog: productsUIContext.openDeleteProductsDialog,
-      openFetchProductsDialog: productsUIContext.openFetchProductsDialog,
+      ids: vouchersUIContext.ids,
+      setIds: vouchersUIContext.setIds,
+      openDeleteProductsDialog: vouchersUIContext.openDeleteProductsDialog,
+      openFetchProductsDialog: vouchersUIContext.openFetchProductsDialog,
       openUpdateProductsStatusDialog:
-        productsUIContext.openUpdateProductsStatusDialog,
+        vouchersUIContext.openUpdateProductsStatusDialog,
     };
-  }, [productsUIContext]);
+  }, [vouchersUIContext]);
 
   return (
     <div className="form">
@@ -23,7 +23,7 @@ export function ProductsGrouping() {
             <div className="form-label form-label-no-wrap">
               <label className="-font-bold font-danger-">
                 <span>
-                  Selected records count: <b>{productsUIProps.ids.length}</b>
+                  Selected records count: <b>{vouchersUIProps.ids.length}</b>
                 </span>
               </label>
             </div>
@@ -31,7 +31,7 @@ export function ProductsGrouping() {
               <button
                 type="button"
                 className="btn btn-danger font-weight-bolder font-size-sm"
-                onClick={productsUIProps.openDeleteProductsDialog}
+                onClick={vouchersUIProps.openDeleteProductsDialog}
               >
                 <i className="fa fa-trash"></i> Delete All
               </button>

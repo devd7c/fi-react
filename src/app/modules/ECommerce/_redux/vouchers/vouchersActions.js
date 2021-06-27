@@ -1,7 +1,7 @@
-import * as requestFromServer from "./productsCrud";
-import {productsSlice, callTypes} from "./productsSlice";
+import * as requestFromServer from "./vouchersCrud";
+import {vouchersSlice, callTypes} from "./vouchersSlice";
 
-const {actions} = productsSlice;
+const {actions} = vouchersSlice;
 
 export const fetchProducts = queryParams => async dispatch => {
   dispatch(actions.startCall({ callType: callTypes.list }));
@@ -10,7 +10,7 @@ export const fetchProducts = queryParams => async dispatch => {
       .findProducts(queryParams);
     dispatch(actions.productsFetched({ gridResponse: response }));
   } catch (error) {
-    error.clientMessage = "Can't find products";
+    error.clientMessage = "Can't find vouchers";
     dispatch(actions.catchError({ error, callType: callTypes.list }));
   }
 };
@@ -99,18 +99,6 @@ export const fetchLsVoucherTypeByConceptCode = conceptCode => async dispatch => 
   } catch (error) {
     error.clientMessage = "Can't find concepts";
     dispatch(actions.catchError({ error, callType: callTypes.list }));
-  }
-};
-
-export const updateProductsStatus = (ids, status) => async dispatch => {
-  dispatch(actions.startCall({ callType: callTypes.action }));
-  try {
-    await requestFromServer
-      .updateStatusForProducts(ids, status);
-    dispatch(actions.productsStatusUpdated({ ids, status }));
-  } catch (error) {
-    error.clientMessage = "Can't update products status";
-    dispatch(actions.catchError({ error, callType: callTypes.action }));
   }
 };
 

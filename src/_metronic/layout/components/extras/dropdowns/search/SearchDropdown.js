@@ -82,7 +82,7 @@ const fakeData = [
   },
   {
     type: 1,
-    text: "$2900 worth products sold",
+    text: "$2900 worth vouchers sold",
     description: "Total 234 items",
     iconClassName: "flaticon2-supermarket font-warning",
   },

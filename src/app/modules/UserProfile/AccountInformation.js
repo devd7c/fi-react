@@ -357,7 +357,7 @@ function AccountInformation(props) {
               <p className="form-text text-muted py-2">
                 For extra security, this requires you to confirm your email or
                 phone number when you reset your password.
-                <a href="#" className="font-weight-boldk">
+                <a href="#" className="font-weight-bold">
                   Learn more
                 </a>
                 .

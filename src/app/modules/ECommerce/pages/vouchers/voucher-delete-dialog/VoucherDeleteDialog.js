@@ -3,25 +3,25 @@ import React, { useEffect, useMemo } from "react";
 import { Modal } from "react-bootstrap";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { ModalProgressBar } from "../../../../../../_metronic/_partials/controls";
-import * as actions from "../../../_redux/products/productsActions";
-import { useProductsUIContext } from "../ProductsUIContext";
+import * as actions from "../../../_redux/vouchers/vouchersActions";
+import { useVouchersUIContext } from "../VouchersUIContext";
 
-export function ProductDeleteDialog({ id, show, onHide }) {
-  // Products UI Context
-  const productsUIContext = useProductsUIContext();
-  const productsUIProps = useMemo(() => {
+export function VoucherDeleteDialog({ id, show, onHide }) {
+  // vouchers UI Context
+  const vouchersUIContext = useVouchersUIContext();
+  const vouchersUIProps = useMemo(() => {
     return {
-      setIds: productsUIContext.setIds,
-      queryParams: productsUIContext.queryParams,
+      setIds: vouchersUIContext.setIds,
+      queryParams: vouchersUIContext.queryParams,
     };
-  }, [productsUIContext]);
+  }, [vouchersUIContext]);
 
-  // Products Redux state
+  // vouchers Redux state
   const dispatch = useDispatch();
   const { actionStatus, actionLoading } = useSelector(
     (state) => ({ 
-      actionLoading: state.products.actionLoading,
-      actionStatus: state.products.actionStatus
+      actionLoading: state.vouchers.actionLoading,
+      actionStatus: state.vouchers.actionStatus
     }),
     shallowEqual
   );
@@ -43,9 +43,9 @@ export function ProductDeleteDialog({ id, show, onHide }) {
     // server request for deleting product by id
     dispatch(actions.deleteProduct(id)).then(() => {
       // refresh list after deletion
-      dispatch(actions.fetchProducts(productsUIProps.queryParams));
+      dispatch(actions.fetchProducts(vouchersUIProps.queryParams));
       // clear selections list
-      productsUIProps.setIds([]);
+      vouchersUIProps.setIds([]);
       // closing delete modal
       onHide();
     });

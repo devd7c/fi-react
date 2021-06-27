@@ -2,7 +2,7 @@ import React from "react";
 import {
   ProductConditionCssClasses,
   ProductConditionTitles
-} from "../../ProductsUIHelpers";
+} from "../../VouchersUIHelpers";
 
 export const ConditionColumnFormatter = (cellContent, row) => (
   <>

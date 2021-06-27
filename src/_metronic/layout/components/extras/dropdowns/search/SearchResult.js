@@ -247,7 +247,7 @@ export function SearchResult({ data }) {
                   href="#"
                   className="font-weight-bold text-dark text-hover-primary"
                 >
-                  $2900 worth products sold
+                  $2900 worth vouchers sold
                 </a>
                 <span className="font-size-sm font-weight-bold text-muted">
                   Total 234 items

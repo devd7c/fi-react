@@ -2,7 +2,7 @@ import React from "react";
 import {
   ProductStatusCssClasses,
   ProductStatusTitles
-} from "../../ProductsUIHelpers";
+} from "../../VouchersUIHelpers";
 
 export const StatusColumnFormatter = (cellContent, row) => (
   <span

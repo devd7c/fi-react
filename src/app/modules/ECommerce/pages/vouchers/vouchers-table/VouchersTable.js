@@ -7,8 +7,8 @@ import paginationFactory, {
   PaginationProvider,
 } from "react-bootstrap-table2-paginator";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import * as actions from "../../../_redux/products/productsActions";
-import * as uiHelpers from "../ProductsUIHelpers";
+import * as actions from "../../../_redux/vouchers/vouchersActions";
+import * as uiHelpers from "../VouchersUIHelpers";
 import {
   getSelectRow,
   getHandlerTableChange,
@@ -17,44 +17,44 @@ import {
 } from "../../../../../../_metronic/_helpers";
 import * as columnFormatters from "./column-formatters";
 import { Pagination } from "../../../../../../_metronic/_partials/controls";
-import { useProductsUIContext } from "../ProductsUIContext";
+import { useVouchersUIContext } from "../VouchersUIContext";
 //
 import { ToastErrorLoading } from "../../../../../../_metronic/_partials/controls";
 import { ToastStatusLoading } from "../../../../../../_metronic/_partials/controls";
 
-export function ProductsTable() {
+export function VouchersTable() {
   // Managing async state for dispatch (default = false)
   const mounted = useRef(false);
-  // Products UI Context
-  const productsUIContext = useProductsUIContext();
-  const productsUIProps = useMemo(() => {
+  // vouchers UI Context
+  const vouchersUIContext = useVouchersUIContext();
+  const vouchersUIProps = useMemo(() => {
     return {
-      ids: productsUIContext.ids,
-      setIds: productsUIContext.setIds,
-      queryParams: productsUIContext.queryParams,
-      setQueryParams: productsUIContext.setQueryParams,
-      openEditProductPage: productsUIContext.openEditProductPage,
-      openDeleteProductDialog: productsUIContext.openDeleteProductDialog,
+      ids: vouchersUIContext.ids,
+      setIds: vouchersUIContext.setIds,
+      queryParams: vouchersUIContext.queryParams,
+      setQueryParams: vouchersUIContext.setQueryParams,
+      openEditProductPage: vouchersUIContext.openEditProductPage,
+      openDeleteProductDialog: vouchersUIContext.openDeleteProductDialog,
     };
-  }, [productsUIContext]);
+  }, [vouchersUIContext]);
 
-  // Getting current state of products list from store (Redux)
+  // Getting current state of vouchers list from store (Redux)
   const { currentState } = useSelector(
-    (state) => ({ currentState: state.products }),
+    (state) => ({ currentState: state.vouchers }),
     shallowEqual
   );
   const { totalCount, entities, listLoading, actionLoading, status, statusName, error } = currentState;
-  // Products Redux state
+  // vouchers Redux state
   const dispatch = useDispatch();
   useEffect(() => {
     // clear selections list
-    productsUIProps.setIds([]);
+    vouchersUIProps.setIds([]);
     // Managing async when is dispatch
     mounted.current = true;
     // server call by queryParams
-    dispatch(actions.fetchProducts(productsUIProps.queryParams));
+    dispatch(actions.fetchProducts(vouchersUIProps.queryParams));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [productsUIProps.queryParams, dispatch]);
+  }, [vouchersUIProps.queryParams, dispatch]);
   // Table columns
   const columns = [
     {
@@ -94,8 +94,8 @@ export function ProductsTable() {
       text: "Actions",
       formatter: columnFormatters.ActionsColumnFormatter,
       formatExtraData: {
-        openEditProductPage: productsUIProps.openEditProductPage,
-        openDeleteProductDialog: productsUIProps.openDeleteProductDialog,
+        openEditProductPage: vouchersUIProps.openEditProductPage,
+        openDeleteProductDialog: vouchersUIProps.openDeleteProductDialog,
       },
       classes: "text-right pr-0",
       headerClasses: "text-right pr-3",
@@ -109,8 +109,8 @@ export function ProductsTable() {
     custom: true,
     totalSize: totalCount,
     sizePerPageList: uiHelpers.sizePerPageList,
-    sizePerPage: productsUIProps.queryParams.pageSize,
-    page: productsUIProps.queryParams.pageNumber,
+    sizePerPage: vouchersUIProps.queryParams.pageSize,
+    page: vouchersUIProps.queryParams.pageNumber,
   };
   return (
     <>
@@ -132,12 +132,12 @@ export function ProductsTable() {
                 columns={columns}
                 defaultSorted={uiHelpers.defaultSorted}
                 onTableChange={getHandlerTableChange(
-                  productsUIProps.setQueryParams
+                  vouchersUIProps.setQueryParams
                 )}
                 selectRow={getSelectRow({
                   entities,
-                  ids: productsUIProps.ids,
-                  setIds: productsUIProps.setIds,
+                  ids: vouchersUIProps.ids,
+                  setIds: vouchersUIProps.setIds,
                 })}
                 {...paginationTableProps}
               >

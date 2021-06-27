@@ -39,13 +39,13 @@ export function RemarksTable() {
     };
   }, [remarksUIContext]);
 
-  // Getting current state of products list from store (Redux)
+  // Getting current state of vouchers list from store (Redux)
   const { currentState } = useSelector(
     (state) => ({ currentState: state.remarks }),
     shallowEqual
   );
   const { totalCount, entities, listLoading, actionsLoading, status, statusName, error } = currentState;
-  // Products Redux state
+  // vouchers Redux state
   const dispatch = useDispatch();
   useEffect(() => {
     // clear selections list

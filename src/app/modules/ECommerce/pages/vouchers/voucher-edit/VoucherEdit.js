@@ -2,14 +2,14 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { shallowEqual, useSelector } from "react-redux";
-import * as actions from "../../../_redux/products/productsActions";
+import * as actions from "../../../_redux/vouchers/vouchersActions";
 import {
   Card,
   CardBody,
   CardHeader,
   CardHeaderToolbar,
 } from "../../../../../../_metronic/_partials/controls";
-import { ProductEditForm } from "./ProductEditForm";
+import { VoucherEditForm } from "./VoucherEditForm";
 import { useSubheader } from "../../../../../../_metronic/layout";
 import { ModalProgressBar } from "../../../../../../_metronic/_partials/controls";
 import { RemarksUIProvider } from "../product-remarks/RemarksUIContext";
@@ -32,7 +32,7 @@ const initVoucher = {
   },
 };
 
-export function ProductEdit({
+export function VoucherEdit({
   history,
   match: {
     params: { id },
@@ -48,9 +48,9 @@ export function ProductEdit({
   // const layoutDispatch = useContext(LayoutContext.Dispatch);
   const { actionLoading, entityForEdit, lsType } = useSelector(
     (state) => ({
-      actionLoading: state.products.actionLoading,
-      entityForEdit: state.products.entityForEdit,
-      lsType: state.products.lsType,
+      actionLoading: state.vouchers.actionLoading,
+      entityForEdit: state.vouchers.entityForEdit,
+      lsType: state.vouchers.lsType,
     }),
     shallowEqual
   );
@@ -110,7 +110,7 @@ export function ProductEdit({
   }
 
   const backToProductsList = () => {
-    history.push(`/e-commerce/products`);
+    history.push(`/e-commerce/vouchers`);
   };
 
   return (
@@ -171,7 +171,7 @@ export function ProductEdit({
         </ul>
         <div className="mt-5">
           {tab === "basic" && (
-            <ProductEditForm
+            <VoucherEditForm
               actionLoading={actionLoading}
               lsType={selectedTypes(lsType)}
               voucher={entityForEdit || initVoucher}

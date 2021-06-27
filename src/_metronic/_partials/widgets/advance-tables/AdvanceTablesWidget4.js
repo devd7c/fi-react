@@ -24,7 +24,7 @@ export function AdvanceTablesWidget4({ className }) {
               <table className="table table-head-custom table-head-bg table-borderless table-vertical-center">
                 <thead>
                 <tr className="text-left text-uppercase">
-                  <th className="pl-7" style={{minWidth: "250px"}}><span className="text-dark-75">products</span></th>
+                  <th className="pl-7" style={{minWidth: "250px"}}><span className="text-dark-75">comprobantes</span></th>
                   <th style={{minWidth: "100px"}}>earnings</th>
                   <th style={{minWidth: "100px"}}></th>
                   <th style={{minWidth: "100px"}}>company</th>
@@ -55,7 +55,7 @@ export function AdvanceTablesWidget4({ className }) {
                         $8,000,000
                       </span>
                     <span className="text-muted font-weight-bold">
-                        In Proccess
+                        In
                       </span>
                   </td>
                   <td>
@@ -68,7 +68,7 @@ export function AdvanceTablesWidget4({ className }) {
                   </td>
                   <td>
                       <span className="text-dark-75 font-weight-bolder d-block font-size-lg">
-                        Intertico
+                        In
                       </span>
                     <span className="text-muted font-weight-bold">
                         Web, UI/UX Design
@@ -96,7 +96,7 @@ export function AdvanceTablesWidget4({ className }) {
                       </div>
                       <div>
                         <a href="#" className="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">Jessie
-                          Clarcson</a>
+                          c</a>
                         <span className="text-muted font-weight-bold d-block">C#, ASP.NET, MS SQL</span>
                       </div>
                     </div>
@@ -119,7 +119,7 @@ export function AdvanceTablesWidget4({ className }) {
                   </td>
                   <td>
                     <span className="text-dark-75 font-weight-bolder d-block font-size-lg">
-                      Agoda
+                      Ago
                     </span>
                     <span className="text-muted font-weight-bold">
                       Houses & Hotels
@@ -128,7 +128,7 @@ export function AdvanceTablesWidget4({ className }) {
                   <td>
                     <img src={toAbsoluteUrl("/media/logos/stars.png")} alt="image" style={{width: "5.5rem"}}/>
                     <span className="text-muted font-weight-bold d-block font-size-sm">
-                      Above Avarage
+                      Above
                     </span>
                   </td>
                   <td className="pr-0 text-right">
@@ -147,7 +147,7 @@ export function AdvanceTablesWidget4({ className }) {
                       </div>
                       <div>
                         <a href="#" className="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">
-                          Lebron Wayde
+                          Le
                         </a>
                         <span className="text-muted font-weight-bold d-block">PHP, Laravel, VueJS</span>
                       </div>
@@ -199,7 +199,7 @@ export function AdvanceTablesWidget4({ className }) {
                       </div>
                       <div>
                         <a href="#" className="text-dark font-weight-bolder text-hover-primary mb-1 font-size-lg">
-                          Natali Trump
+                          Trump
                         </a>
                         <span className="text-muted font-weight-bold d-block">Python, PostgreSQL, ReactJS</span>
                       </div>
@@ -232,7 +232,7 @@ export function AdvanceTablesWidget4({ className }) {
                   <td>
                     <img src={toAbsoluteUrl("/media/logos/stars.png")} alt="image" style={{width: "5.5rem"}}/>
                     <span className="text-muted font-weight-bold d-block font-size-sm">
-                      Avarage
+                      Av
                     </span>
                   </td>
                   <td className="pr-0 text-right">

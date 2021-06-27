@@ -1,8 +1,8 @@
 import React, { Suspense } from "react";
 import { Redirect, Switch } from "react-router-dom";
 import { CustomersPage } from "./customers/CustomersPage";
-import { ProductsPage } from "./products/ProductsPage";
-import { ProductEdit } from "./products/product-edit/ProductEdit";
+import { VouchersPage } from "./vouchers/VouchersPage";
+import { VoucherEdit } from "./vouchers/voucher-edit/VoucherEdit";
 import { LayoutSplashScreen, ContentRoute } from "../../../../_metronic/layout";
 
 export default function eCommercePage() {
@@ -18,13 +18,13 @@ export default function eCommercePage() {
           />
         }
         <ContentRoute path="/e-commerce/customers" component={CustomersPage} />
-        <ContentRoute path="/e-commerce/products/new" component={ProductEdit} />
+        <ContentRoute path="/e-commerce/vouchers/new" component={VoucherEdit} />
         <ContentRoute
-          path="/e-commerce/products/:id/edit"
-          component={ProductEdit}
+          path="/e-commerce/vouchers/:id/edit"
+          component={VoucherEdit}
         />
 
-        <ContentRoute path="/e-commerce/products" component={ProductsPage} />
+        <ContentRoute path="/e-commerce/vouchers" component={VouchersPage} />
       </Switch>
     </Suspense>
   );

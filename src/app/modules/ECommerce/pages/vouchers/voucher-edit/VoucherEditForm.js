@@ -16,7 +16,7 @@ const ProductEditSchema = Yup.object().shape({
     .required("Fecha es requerido"),
 });
 
-export function ProductEditForm({
+export function VoucherEditForm({
   lsType,
   voucher,
   btnRef,

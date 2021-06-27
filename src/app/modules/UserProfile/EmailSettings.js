@@ -296,7 +296,7 @@ function EmailSettings(props) {
                     }
                     onChange={formik.handleChange}
                   />
-                  <span></span>News about Keenthemes products and feature
+                  <span></span>News
                   updates
                 </label>
                 <label className="checkbox">
@@ -329,7 +329,7 @@ function EmailSettings(props) {
                     }
                     onChange={formik.handleChange}
                   />
-                  <span></span>News about Metronic on partner products and other
+                  <span></span>News 
                   services
                 </label>
                 <label className="checkbox">
@@ -339,7 +339,7 @@ function EmailSettings(props) {
                     checked={formik.values.tipsOnMetronicBusinessProducts}
                     onChange={formik.handleChange}
                   />
-                  <span></span>Tips on Metronic business products
+                  <span></span>Tips
                 </label>
               </div>
             </div>

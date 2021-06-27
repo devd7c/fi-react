@@ -45,10 +45,10 @@ export function AdvanceTablesWidget9({ className }) {
                 <thead>
                   <tr className="text-left">
                     <th style={{ minWidth: "250px" }} className="pl-7">
-                      <span className="text-dark-75">products</span>
+                      <span className="text-dark-75">comprobantes</span>
                     </th>
                     <th style={{ minWidth: "120px" }}>earnings</th>
-                    <th style={{ minWidth: "100px" }}>comission</th>
+                    <th style={{ minWidth: "100px" }}>commission</th>
                     <th style={{ minWidth: "100px" }}>company</th>
                     <th style={{ minWidth: "100px" }}>rating</th>
                     <th style={{ minWidth: "100px" }} />
@@ -86,7 +86,7 @@ export function AdvanceTablesWidget9({ className }) {
                         $8,000,000
                       </span>
                       <span className="text-muted font-weight-bold">
-                        In Proccess
+                        In Process
                       </span>
                     </td>
                     <td>
@@ -97,7 +97,7 @@ export function AdvanceTablesWidget9({ className }) {
                     </td>
                     <td>
                       <span className="text-dark-75 font-weight-bolder d-block font-size-lg">
-                        Intertico
+                        Inter
                       </span>
                       <span className="text-muted font-weight-bold">
                         Web, UI/UX Design
@@ -140,7 +140,7 @@ export function AdvanceTablesWidget9({ className }) {
                             href="#"
                             className="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg"
                           >
-                            Jessie Clarcson
+                            Jessie
                           </a>
                           <span className="text-muted font-weight-bold d-block">
                             C#, ASP.NET, MS SQL
@@ -166,7 +166,7 @@ export function AdvanceTablesWidget9({ className }) {
                     </td>
                     <td>
                       <span className="text-dark-75 font-weight-bolder d-block font-size-lg">
-                        Agoda
+                        Ago
                       </span>
                       <span className="text-muted font-weight-bold">
                         Houses & Hotels
@@ -209,7 +209,7 @@ export function AdvanceTablesWidget9({ className }) {
                             href="#"
                             className="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg"
                           >
-                            Lebron Wayde
+                            Le
                           </a>
                           <span className="text-muted font-weight-bold d-block">
                             PHP, Laravel, VueJS
@@ -274,7 +274,7 @@ export function AdvanceTablesWidget9({ className }) {
                             href="#"
                             className="text-dark font-weight-bolder text-hover-primary mb-1 font-size-lg"
                           >
-                            Natali Trump
+                            Trump
                           </a>
                           <span className="text-muted font-weight-bold d-block">
                             Python, PostgreSQL, ReactJS
